@@ -1,12 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { LoginView } from '../login-view/login-view';
 
+const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com/movies';
+
+// This is url to test: https://openlibrary.org/search.json?q=star+wars
 export const MainView = () => {
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const storedToken = localStorage.getItem('token');
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   useEffect(() => {
-    fetch('https://spencer-flix-20b125b2fb9e.herokuapp.com/movies')
+    if (!token) {
+      return;
+    }
+
+    fetch(`${apiUrl}/movies`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.map((movie) => {
@@ -21,13 +35,25 @@ export const MainView = () => {
         });
         setMovies(moviesFromApi);
       });
-  }, []);
+    }, [token]);
 
   if (selectedMovie) {
     return (
       <MovieView
         movie={selectedMovie}
         onBackClick={() => setSelectedMovie(null)}
+      />
+    );
+  }
+
+  if (!user) {
+    return (
+      <LoginView
+        onLoggedIn={(user, token) => {
+          setUser(user);
+          setToken(token);
+          localStorage.clear();
+        }}
       />
     );
   }
@@ -47,6 +73,14 @@ export const MainView = () => {
           }
         />
       ))}
+        <button
+        onClick={() => {
+          setUser(null);
+          setToken(null);
+        }}
+      >
+        Logout
+      </button>
     </React.Fragment>
   );
 };
