@@ -4,7 +4,7 @@ import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
 
-const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com/movies';
+const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com/';
 
 // This is url to test: https://openlibrary.org/search.json?q=star+wars
 export const MainView = () => {
