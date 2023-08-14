@@ -48,7 +48,7 @@ export const MainView = () => {
   }
 
   if (!user) {
-    return (
+    return(
       <React.Fragment>
         <LoginView
           onLoggedIn={(user, token) => {
