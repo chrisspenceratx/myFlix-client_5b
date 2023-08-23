@@ -15,3 +15,5 @@ MovieCard.propTypes = {
   }),
   onMovieClick: PropTypes.func.isRequired,
 };
+
+//testing out 3.6 pushes///
