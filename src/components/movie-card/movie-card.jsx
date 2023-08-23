@@ -16,4 +16,4 @@ MovieCard.propTypes = {
   onMovieClick: PropTypes.func.isRequired,
 };
 
-//testing out 3.6 pushes///
+//testing out 3.6 pushes...and again..///
