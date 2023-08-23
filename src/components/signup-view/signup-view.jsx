@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 
 const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com/movies';
 
@@ -35,50 +36,50 @@ export const SignupView = () => {
   };
 
   return (
-    <React.Fragment>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input
-          id="username"
-          name="username"
+    <Form onSubmit={handleSubmit}>
+      <Form.Group controlId="formUsername">
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
           value={username}
           required
           onChange={(e) => setUsername(e.target.value)}
           minLength={5}
         />
+      </Form.Group>
 
-        <label htmlFor="password">Password:</label>
-        <input
-          id="password"
-          name="password"
+      <Form.Group controlId="formPassword">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
           type="password"
           value={password}
           required
           onChange={(e) => setPassword(e.target.value)}
         />
+      </Form.Group>
 
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
+      <Form.Group controlId="formEmail">
+        <Form.Label>Email:</Form.Label>
+        <Form.Control
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </Form.Group>
 
-        <label>
-          Birthday:
-          <input
-            type="date"
-            value={birthday}
-            onChange={(e) => setBirthday(e.target.value)}
-            required
-          />
-        </label>
+      <Form.Group controlId="formBirthday">
+        <Form.Label>Birthday:</Form.Label>
+        <Form.Control
+          type="date"
+          value={birthday}
+          onChange={(e) => setBirthday(e.target.value)}
+          required
+        />
+      </Form.Group>
 
-        <button type="submit">Submit</button>
-      </form>
-    </React.Fragment>
+      <Button variant="primary" type="submit">
+        Signup
+      </Button>
+    </Form>
   );
 };
