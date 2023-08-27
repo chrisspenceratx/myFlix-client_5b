@@ -17,9 +17,6 @@ export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   
   useEffect(() => {
-<<<<<<< HEAD
-    fetch('https://spencer-flix-20b125b2fb9e.herokuapp.com/')
-=======
     if (!token) {
       return;
     }
@@ -27,7 +24,6 @@ export const MainView = () => {
     fetch(`${apiUrl}/movies`, {
       headers: { Authorization: `Bearer ${token}` },
     })
->>>>>>> d310a3de51c06d054e96663b0d087023edbce0d5
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.map((movie) => {
