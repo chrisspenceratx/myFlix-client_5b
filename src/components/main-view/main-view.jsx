@@ -8,6 +8,7 @@ import { SignupView } from '../signup-view/signup-view';
 const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com/movies';
 
 // This is url to test: https://openlibrary.org/search.json?q=star+wars
+// init commit for 3.7)//
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
   const storedToken = localStorage.getItem('token');
