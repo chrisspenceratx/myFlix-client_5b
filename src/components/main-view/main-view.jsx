@@ -6,6 +6,7 @@ import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
+import { ProfileView } from '../profile-view/profile-view';
 
 const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com/movies';
 
@@ -94,6 +95,25 @@ export const MainView = () => {
                 ) : (
                   <Col md={8}>
                     <MovieView movies={movies} />
+                  </Col>
+                )}
+              </Fragment>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Fragment>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col md={6}>
+                    <ProfileView
+                      user={user}
+                      token={token}
+                      setUser={setUser}
+                      movies={movies}
+                    />
                   </Col>
                 )}
               </Fragment>
