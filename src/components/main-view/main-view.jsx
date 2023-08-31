@@ -8,7 +8,7 @@ import { SignupView } from '../signup-view/signup-view';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { ProfileView } from '../profile-view/profile-view';
 
-const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com/movies';
+const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -94,7 +94,12 @@ export const MainView = () => {
                   <div>Loading...</div>
                 ) : (
                   <Col md={8}>
-                    <MovieView movies={movies} />
+                    <MovieView
+                      movies={movies}
+                      user={user}
+                      setUser={setUser}
+                      token={token}
+                    />
                   </Col>
                 )}
               </Fragment>
