@@ -1,7 +1,8 @@
 import { Fragment, useState } from 'react';
-import { Container, Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import { MovieCard } from '../movie-card/movie-card';
 
-const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com/movies';
+const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com';
 
 export const ProfileView = ({ user, token, setUser, movies }) => {
   const [username, setUsername] = useState(user.Username);
@@ -113,7 +114,11 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
         {favoriteMovies.length === 0 ? (
           <Col>You have no favorite movies yet.</Col>
         ) : (
-          favoriteMovies.map((movie) => <h3>{movie.Title}</h3>)
+          favoriteMovies.map((movie) => (
+            <Col md={6} className="mb-3">
+              <MovieCard movie={movie} user={user} />
+            </Col>
+          ))
         )}
       </Row>
     </Fragment>
