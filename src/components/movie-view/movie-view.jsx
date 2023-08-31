@@ -1,11 +1,70 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Button } from 'react-bootstrap';
 
-export const MovieView = ({ movies }) => {
+const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com';
+
+export const MovieView = ({ movies, user, setUser, token }) => {
   const { movieId } = useParams();
   const movie = movies.find((movie) => movie.Id === movieId);
+  const [isFavorite, setIsFavorite] = useState(false);
+  useEffect(() => {
+    setIsFavorite(user.FavoriteMovies.includes(movieId));
+  }, []);
+
+  const handleFavorite = () => {
+    fetch(`${apiUrl}/users/${user.Username}/movies/${movieId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert('Something went wrong');
+          throw new Error('Something went wrong');
+        }
+      })
+      .then((data) => {
+        setIsFavorite(true);
+        localStorage.setItem('user', JSON.stringify(data));
+        setUser(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleUnFavorite = () => {
+    fetch(`${apiUrl}/users/${user.Username}/movies/${movieId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert('Something went wrong');
+          throw new Error('Something went wrong');
+        }
+      })
+      .then((data) => {
+        setIsFavorite(false);
+        localStorage.setItem('user', JSON.stringify(data));
+        setUser(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <Fragment>
@@ -27,8 +86,17 @@ export const MovieView = ({ movies }) => {
         <span>{movie.Director.Name}</span>
       </div>
       <Link to={`/`}>
-        <button>Back</button>
+        <Button variant="link">Back</Button>
       </Link>
+      {isFavorite ? (
+        <Button onClick={handleUnFavorite} variant="info">
+          Remove From Favorites
+        </Button>
+      ) : (
+        <Button onClick={handleFavorite} variant="success">
+          Add To Favorites
+        </Button>
+      )}
     </Fragment>
   );
 };
