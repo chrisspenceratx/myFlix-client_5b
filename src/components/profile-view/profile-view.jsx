@@ -10,6 +10,10 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday.split('T')[0]);
 
+  const favoriteMovies = movies.filter((movie) => {
+    return user.FavoriteMovies.includes(movie.Id);
+  });
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -45,9 +49,29 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
       });
   };
 
-  let favoriteMovies = movies.filter((movie) => {
-    return user.FavoriteMovies.includes(movie.Id);
-  });
+  const deleteProfile = () => {
+    confirm('Are you sure you want to delete your profile?');
+
+    fetch(`${apiUrl}/users/${user.Username}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          localStorage.clear();
+          setUser(null);
+        } else {
+          alert('Delete failed.');
+          throw new Error('Delete failed');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <Fragment>
@@ -106,6 +130,9 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 
         <Button variant="primary" type="submit">
           Update Your Profile
+        </Button>
+        <Button variant="link" onClick={deleteProfile}>
+          Delete Your Profile
         </Button>
       </Form>
 
