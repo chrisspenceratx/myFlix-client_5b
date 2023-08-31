@@ -136,7 +136,7 @@ export const MainView = () => {
                   <Fragment>
                     {movies.map((movie) => (
                       <Col key={movie.Id} md={3} className="mb-5">
-                        <MovieCard movie={movie} />
+                        <MovieCard movie={movie} user={user} />
                       </Col>
                     ))}
                     <Button onClick={handleLogOut}>Logout</Button>
