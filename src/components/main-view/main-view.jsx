@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Button, Row, Col } from 'react-bootstrap';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -7,8 +8,6 @@ import { SignupView } from '../signup-view/signup-view';
 
 const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com/movies';
 
-// This is url to test: https://openlibrary.org/search.json?q=star+wars
-// init commit for 3.7)//
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
   const storedToken = localStorage.getItem('token');
@@ -16,7 +15,6 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  
   useEffect(() => {
     if (!token) {
       return;
@@ -42,53 +40,92 @@ export const MainView = () => {
   }, [token]);
 
   return (
-    <Row className="justify-content-md-center">
-      {selectedMovie ? (
-        <Col md={8}>
-          <MovieView
-            movie={selectedMovie}
-            onBackClick={() => setSelectedMovie(null)}
+    <BrowserRouter>
+      <Row className="justify-content-md-center">
+        <Routes>
+          <Route
+            path="/signup"
+            element={
+              <Fragment>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <SignupView />
+                  </Col>
+                )}
+              </Fragment>
+            }
           />
-        </Col>
-      ) : !user ? (
-        <Col md={5}>
-          <LoginView
-            onLoggedIn={(user, token) => {
-              setUser(user);
-              setToken(token);
-            }}
+          <Route
+            path="/login"
+            element={
+              <Fragment>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <LoginView
+                      onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                    />
+                  </Col>
+                )}
+              </Fragment>
+            }
           />
-          or
-          <SignupView />
-        </Col>
-      ) : movies.length === 0 ? (
-        <div>Loading...</div>
-      ) : (
-        <React.Fragment>
-          {movies.map((movie) => (
-            <Col key={movie.Id} md={3} className="mb-5">
-              <MovieCard
-                movie={movie}
-                onMovieClick={(newSelectedMovie) =>
-                  setSelectedMovie(newSelectedMovie)
-                }
-              />
-            </Col>
-          ))}
-          <Button
-            onClick={() => {
-              setUser(null);
-              setToken(null);
-              localStorage.clear();
-            }}
-          >
-            Logout
-          </Button>
-        </React.Fragment>
-      )}
-    </Row>
+          <Route
+            path="/movies/:movieId"
+            element={
+              <Fragment>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <div>Loading...</div>
+                ) : (
+                  <Col md={8}>
+                    <MovieView
+                      movie={selectedMovie}
+                      onBackClick={() => setSelectedMovie(null)}
+                    />
+                  </Col>
+                )}
+              </Fragment>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <Fragment>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <div>Loading...</div>
+                ) : (
+                  <Fragment>
+                    {movies.map((movie) => (
+                      <Col key={movie.Id} md={3} className="mb-5">
+                        <MovieCard movie={movie} />
+                      </Col>
+                    ))}
+                    <Button
+                      onClick={() => {
+                        setUser(null);
+                        setToken(null);
+                        localStorage.clear();
+                      }}
+                    >
+                      Logout
+                    </Button>
+                  </Fragment>
+                )}
+              </Fragment>
+            }
+          />
+        </Routes>
+      </Row>
+    </BrowserRouter>
   );
 };
-
-
-
