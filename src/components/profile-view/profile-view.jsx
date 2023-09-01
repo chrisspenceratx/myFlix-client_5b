@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { MovieCard } from '../movie-card/movie-card';
 
-const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com';
+const apiUrl = 'https://spencer-flix-c2b5a70a1e0d.herokuapp.com/';
 
 export const ProfileView = ({ user, token, setUser, movies }) => {
   const [username, setUsername] = useState(user.Username);

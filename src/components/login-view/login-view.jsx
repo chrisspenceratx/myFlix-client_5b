@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
-const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com/';
+const apiUrl = 'https://spencer-flix-c2b5a70a1e0d.herokuapp.com/';
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');

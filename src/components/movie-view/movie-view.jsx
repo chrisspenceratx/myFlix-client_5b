@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 
-const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com/';
+const apiUrl = 'https://spencer-flix-c2b5a70a1e0d.herokuapp.com//';
 
 export const MovieView = ({ movies, user, setUser, token }) => {
   const { movieId } = useParams();
