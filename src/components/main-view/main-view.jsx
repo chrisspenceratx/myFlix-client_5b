@@ -1,14 +1,14 @@
 import { Fragment, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Button, Row, Col } from 'react-bootstrap';
-import { MovieCard } from '../movie-card/movie-card';
+import { Row, Col } from 'react-bootstrap';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { ProfileView } from '../profile-view/profile-view';
+import { MoviesList } from '../movies-list/movies-list';
 
-const apiUrl = 'https://spencer-flix-c2b5a70a1e0d.herokuapp.com';
+const apiUrl = 'https://spencer-flix-c2b5a70a1e0d.herokuapp.com/';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -130,17 +130,8 @@ export const MainView = () => {
               <Fragment>
                 {!user ? (
                   <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <div>Loading...</div>
                 ) : (
-                  <Fragment>
-                    {movies.map((movie) => (
-                      <Col key={movie.Id} md={3} className="mb-5">
-                        <MovieCard movie={movie} user={user} />
-                      </Col>
-                    ))}
-                    <Button onClick={handleLogOut}>Logout</Button>
-                  </Fragment>
+                  <MoviesList movies={movies} user={user} />
                 )}
               </Fragment>
             }
