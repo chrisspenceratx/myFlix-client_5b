@@ -49,95 +49,95 @@ export const MainView = () => {
   return (
     <BrowserRouter>
       <NavigationBar user={user} onLoggedOut={handleLogOut} />
-      <Row className="justify-content-md-center">
-        <Routes>
-          <Route
-            path="/signup"
-            element={
-              <Fragment>
-                {user ? (
-                  <Navigate to="/" />
-                ) : (
-                  <Col md={5}>
-                    <SignupView />
-                  </Col>
-                )}
-              </Fragment>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <Fragment>
-                {user ? (
-                  <Navigate to="/" />
-                ) : (
-                  <Col md={5}>
-                    <LoginView
-                      onLoggedIn={(user, token) => {
-                        setUser(user);
-                        setToken(token);
-                      }}
-                    />
-                  </Col>
-                )}
-              </Fragment>
-            }
-          />
-          <Route
-            path="/movies/:movieId"
-            element={
-              <Fragment>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <div>Loading...</div>
-                ) : (
-                  <Col md={8}>
-                    <MovieView
-                      movies={movies}
-                      user={user}
-                      setUser={setUser}
-                      token={token}
-                    />
-                  </Col>
-                )}
-              </Fragment>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <Fragment>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : (
-                  <Col md={6}>
+      <Container>
+        <Row className="justify-content-md-center">
+          <Routes>
+            <Route
+              path="/signup"
+              element={
+                <Fragment>
+                  {user ? (
+                    <Navigate to="/" />
+                  ) : (
+                    <Col md={5}>
+                      <SignupView />
+                    </Col>
+                  )}
+                </Fragment>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <Fragment>
+                  {user ? (
+                    <Navigate to="/" />
+                  ) : (
+                    <Col md={5}>
+                      <LoginView
+                        onLoggedIn={(user, token) => {
+                          setUser(user);
+                          setToken(token);
+                        }}
+                      />
+                    </Col>
+                  )}
+                </Fragment>
+              }
+            />
+            <Route
+              path="/movies/:movieId"
+              element={
+                <Fragment>
+                  {!user ? (
+                    <Navigate to="/login" replace />
+                  ) : movies.length === 0 ? (
+                    <div>Loading...</div>
+                  ) : (
+                    <Col md={8}>
+                      <MovieView
+                        movies={movies}
+                        user={user}
+                        setUser={setUser}
+                        token={token}
+                      />
+                    </Col>
+                  )}
+                </Fragment>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Fragment>
+                  {!user ? (
+                    <Navigate to="/login" replace />
+                  ) : (
                     <ProfileView
                       user={user}
                       token={token}
                       setUser={setUser}
                       movies={movies}
                     />
-                  </Col>
-                )}
-              </Fragment>
-            }
-          />
-          <Route
-            path="/"
-            element={
-              <Fragment>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : (
-                  <MoviesList movies={movies} user={user} />
-                )}
-              </Fragment>
-            }
-          />
-        </Routes>
-      </Row>
+                  )}
+                </Fragment>
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <Fragment>
+                  {!user ? (
+                    <Navigate to="/login" replace />
+                  ) : (
+                    <MoviesList movies={movies} user={user} />
+                  )}
+                </Fragment>
+              }
+            />
+          </Routes>
+        </Row>
+      </Container>
     </BrowserRouter>
   );
 };

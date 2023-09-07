@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 
-const apiUrl = 'https://spencer-flix-c2b5a70a1e0d.herokuapp.com//';
+const apiUrl = 'https://spencer-flix-c2b5a70a1e0d.herokuapp.com/';
 
 export const MovieView = ({ movies, user, setUser, token }) => {
   const { movieId } = useParams();
@@ -42,35 +42,42 @@ export const MovieView = ({ movies, user, setUser, token }) => {
 
   return (
     <Fragment>
-      <img src={movie.ImagePath} width="300" alt={movie.Title} />
-      <div>
-        <span>Title: &nbsp;</span>
+      <img
+        src={movie.ImagePath}
+        width="300"
+        alt={movie.Title}
+        className="my-4"
+      />
+      <div className="my-3">
+        <strong className="me-2">Title:</strong>
         <span>{movie.Title}</span>
       </div>
-      <div>
-        <span>Description: &nbsp;</span>
+      <div className="my-3">
+        <strong className="me-2">Description:</strong>
         <span>{movie.Description}</span>
       </div>
-      <div>
-        <span>Genre: &nbsp;</span>
+      <div className="my-3">
+        <strong className="me-2">Genre:</strong>
         <span>{movie.Genre.Name}</span>
       </div>
-      <div>
-        <span>Director: &nbsp;</span>
+      <div className="my-3">
+        <strong className="me-2">Director:</strong>
         <span>{movie.Director.Name}</span>
       </div>
-      <Link to={`/`}>
-        <Button variant="link">Back</Button>
-      </Link>
-      {isFavorite ? (
-        <Button onClick={() => handleFavorite(false)} variant="info">
-          Remove From Favorites
-        </Button>
-      ) : (
-        <Button onClick={() => handleFavorite(true)} variant="success">
-          Add To Favorites
-        </Button>
-      )}
+      <div className="my-4">
+        <Link to={`/`}>
+          <Button variant="link">Back</Button>
+        </Link>
+        {isFavorite ? (
+          <Button onClick={() => handleFavorite(false)} variant="info">
+            Remove From Favorites
+          </Button>
+        ) : (
+          <Button onClick={() => handleFavorite(true)} variant="success">
+            Add To Favorites
+          </Button>
+        )}
+      </div>
     </Fragment>
   );
 };

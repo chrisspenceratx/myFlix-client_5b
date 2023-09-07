@@ -19,7 +19,7 @@ export const MovieCard = ({ movie, user }) => {
         <Card.Title>
           {movie.Title}
           {isFavorite && (
-            <div>
+            <div className="my-2">
               <Badge bg="info">Favorite</Badge>
             </div>
           )}

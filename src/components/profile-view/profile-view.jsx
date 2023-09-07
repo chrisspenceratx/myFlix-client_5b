@@ -75,66 +75,70 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 
   return (
     <Fragment>
-      <h1>Profile</h1>
-      <div>
-        <strong className="me-3">Username:</strong>
-        {username}
-      </div>
-      <div>
-        <strong className="me-3">Email:</strong>
-        {email}
-      </div>
+      <Row>
+        <Col md={6}>
+          <h1 className="my-3">Profile</h1>
+          <div>
+            <strong className="me-3">Username:</strong>
+            {username}
+          </div>
+          <div>
+            <strong className="me-3">Email:</strong>
+            {email}
+          </div>
 
-      <Form onSubmit={handleSubmit}>
-        <h2>Update Your Profile Information</h2>
-        <Form.Group controlId="formUsername">
-          <Form.Label>Username:</Form.Label>
-          <Form.Control
-            value={username}
-            required
-            onChange={(e) => setUsername(e.target.value)}
-            minLength={5}
-          />
-        </Form.Group>
+          <Form onSubmit={handleSubmit} className="mt-4">
+            <h2>Update Your Profile Information</h2>
+            <Form.Group controlId="formUsername" className="my-3">
+              <Form.Label>Username:</Form.Label>
+              <Form.Control
+                value={username}
+                required
+                onChange={(e) => setUsername(e.target.value)}
+                minLength={5}
+              />
+            </Form.Group>
 
-        <Form.Group controlId="formPassword">
-          <Form.Label>Password:</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            required
-            onChange={(e) => setPassword(e.target.value)}
-            minLength={5}
-          />
-        </Form.Group>
+            <Form.Group controlId="formPassword" className="my-3">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                required
+                onChange={(e) => setPassword(e.target.value)}
+                minLength={5}
+              />
+            </Form.Group>
 
-        <Form.Group controlId="formEmail">
-          <Form.Label>Email:</Form.Label>
-          <Form.Control
-            type="email"
-            value={email}
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
+            <Form.Group controlId="formEmail" className="my-3">
+              <Form.Label>Email:</Form.Label>
+              <Form.Control
+                type="email"
+                value={email}
+                required
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
 
-        <Form.Group controlId="formBirthday">
-          <Form.Label>Birthday:</Form.Label>
-          <Form.Control
-            type="date"
-            value={birthday}
-            required
-            onChange={(e) => setBirthday(e.target.value)}
-          />
-        </Form.Group>
+            <Form.Group controlId="formBirthday" className="my-3">
+              <Form.Label>Birthday:</Form.Label>
+              <Form.Control
+                type="date"
+                value={birthday}
+                required
+                onChange={(e) => setBirthday(e.target.value)}
+              />
+            </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Update Your Profile
-        </Button>
-        <Button variant="link" onClick={deleteProfile}>
-          Delete Your Profile
-        </Button>
-      </Form>
+            <Button variant="primary" type="submit">
+              Update Your Profile
+            </Button>
+            <Button variant="link" onClick={deleteProfile}>
+              Delete Your Profile
+            </Button>
+          </Form>
+        </Col>
+      </Row>
 
       <Row className="mt-4">
         <h2>Your Favorite Movies</h2>
@@ -142,7 +146,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
           <Col>You have no favorite movies yet.</Col>
         ) : (
           favoriteMovies.map((movie) => (
-            <Col key={movie.Id} md={6} className="mb-3">
+            <Col key={movie.Id} md={3} className="mb-3">
               <MovieCard movie={movie} user={user} />
             </Col>
           ))

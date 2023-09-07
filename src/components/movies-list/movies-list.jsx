@@ -10,10 +10,10 @@ export const MoviesList = ({ movies, user }) => {
   useEffect(() => {
     setFilteredMovies(() =>
       movies.filter((movie) =>
-        movie.Title.toLowerCase().includes(filter.toLowerCase())
+        movie.Title.toLowerCase().includes(filter.trim().toLowerCase())
       )
     );
-  }, [filter]);
+  }, [filter, movies]);
 
   return (
     <Fragment>
