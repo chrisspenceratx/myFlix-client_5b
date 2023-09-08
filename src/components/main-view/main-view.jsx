@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from 'react';
+import { MovieCard } from '../movie-card/movie-card';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Row, Col, Container } from 'react-bootstrap';
 import { MovieView } from '../movie-view/movie-view';

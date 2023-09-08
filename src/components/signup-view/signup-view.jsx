@@ -19,7 +19,7 @@ export const SignupView = () => {
       Birthday: birthday,
     };
 
-    fetch(`${apiUrl}/users`, {
+    fetch(`https://spencer-flix-c2b5a70a1e0d.herokuapp.com/users`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
