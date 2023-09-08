@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
-const apiUrl = 'https://spencer-flix-20b125b2fb9e.herokuapp.com/movies';
+const apiUrl = 'https://spencer-flix-c2b5a70a1e0d.herokuapp.com/';
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
@@ -28,7 +28,7 @@ export const LoginView = ({ onLoggedIn }) => {
           localStorage.setItem('token', data.token);
           onLoggedIn(data.user, data.token);
         } else {
-          alert('No such user');
+          alert('Username or Password incorrect.');
         }
       })
       .catch((e) => {
@@ -37,8 +37,8 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formUsername">
+    <Form onSubmit={handleSubmit} className="mt-4">
+    <Form.Group controlId="formUsername" className="my-3">
         <Form.Label>Username:</Form.Label>
         <Form.Control
           value={username}
@@ -48,8 +48,8 @@ export const LoginView = ({ onLoggedIn }) => {
         />
       </Form.Group>
 
-      <Form.Group controlId="formPassword">
-        <Form.Label>Password:</Form.Label>
+      <Form.Group controlId="formPassword" className="my-3">
+                <Form.Label>Password:</Form.Label>
         <Form.Control
           type="password"
           value={password}
@@ -58,7 +58,7 @@ export const LoginView = ({ onLoggedIn }) => {
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" className="my-3">
         Login
       </Button>
     </Form>
