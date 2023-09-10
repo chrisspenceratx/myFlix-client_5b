@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 const apiUrl = 'https://spencer-flix-c2b5a70a1e0d.herokuapp.com/';
 
