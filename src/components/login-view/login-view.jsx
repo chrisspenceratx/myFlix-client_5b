@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 
-const apiUrl = 'https://spencer-flix-c2b5a70a1e0d.herokuapp.com/';
+const apiUrl = 'https://spencer-flix-c2b5a70a1e0d.herokuapp.com';
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
@@ -39,7 +38,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
   return (
     <Form onSubmit={handleSubmit} className="mt-4">
-    <Form.Group controlId="formUsername" className="my-3">
+      <Form.Group controlId="formUsername" className="my-3">
         <Form.Label>Username:</Form.Label>
         <Form.Control
           value={username}
@@ -50,7 +49,7 @@ export const LoginView = ({ onLoggedIn }) => {
       </Form.Group>
 
       <Form.Group controlId="formPassword" className="my-3">
-                <Form.Label>Password:</Form.Label>
+        <Form.Label>Password:</Form.Label>
         <Form.Control
           type="password"
           value={password}

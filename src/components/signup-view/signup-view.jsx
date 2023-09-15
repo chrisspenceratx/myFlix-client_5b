@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
-const apiUrl = 'https://spencer-flix-c2b5a70a1e0d.herokuapp.com/';
+const apiUrl = 'https://users-movies-f50a18657028.herokuapp.com';
 
 export const SignupView = () => {
   const [username, setUsername] = useState('');
@@ -19,7 +19,7 @@ export const SignupView = () => {
       Birthday: birthday,
     };
 
-    fetch(`https://spencer-flix-c2b5a70a1e0d.herokuapp.com/users`, {
+    fetch(`${apiUrl}/users`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -37,7 +37,7 @@ export const SignupView = () => {
 
   return (
     <Form onSubmit={handleSubmit} className="mt-4">
-    <Form.Group controlId="formUsername" className="my-3">
+      <Form.Group controlId="formUsername" className="my-3">
         <Form.Label>Username:</Form.Label>
         <Form.Control
           value={username}
@@ -47,7 +47,7 @@ export const SignupView = () => {
         />
       </Form.Group>
 
-      <Form.Group controlId="formPassword">
+      <Form.Group controlId="formPassword" className="my-3">
         <Form.Label>Password:</Form.Label>
         <Form.Control
           type="password"

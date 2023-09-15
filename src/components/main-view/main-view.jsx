@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState } from 'react';
-import { MovieCard } from '../movie-card/movie-card';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Row, Col, Container } from 'react-bootstrap';
 import { MovieView } from '../movie-view/movie-view';
@@ -9,7 +8,7 @@ import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { ProfileView } from '../profile-view/profile-view';
 import { MoviesList } from '../movies-list/movies-list';
 
-const apiUrl = 'https://spencer-flix-c2b5a70a1e0d.herokuapp.com/';
+const apiUrl = 'https://spencer-flix-c2b5a70a1e0d.herokuapp.com';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
