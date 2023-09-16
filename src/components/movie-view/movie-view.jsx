@@ -43,7 +43,7 @@ export const MovieView = ({ movies, user, setUser, token }) => {
   return (
     <Fragment>
       <img
-        src={movie.ImagePath}
+        src={movie.ImageURL}
         width="300"
         alt={movie.Title}
         className="my-4"
