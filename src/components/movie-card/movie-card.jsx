@@ -1,12 +1,31 @@
+import React from "react";
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/Card';
-import Card from 'react-bootstrap';
-export const MovieCard = ({ movie, onMovieClick }) => {
+import {Button, Card} from 'react-bootstrap';
+import { Badge } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+
+
+export const MovieCard = ({ movie, user }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
+  useEffect(() => {
+    setIsFavorite(user.FavoriteMovies.includes(movie.Id));
+  }, []);
+
   return (
-    <Card onClick={() => onMovieClick(movie)} className="h-100">
-      <Card.Img variant="top" src={movie.ImagePath} />
+    <Card className="h-100">
+      <Link to={`/movies/${encodeURIComponent(movie.Id)}`}>
+        <Card.Img variant="top" src={movie.ImageURL} />
+      </Link>
       <Card.Body>
-        <Card.Title>{movie.Title}</Card.Title>
+        <Card.Title>
+          {movie.Title}
+          {isFavorite && (
+            <div className="my-2">
+              <Badge bg="info">Favorite</Badge>
+            </div>
+          )}
+        </Card.Title>
         <Card.Text>{movie.Description}</Card.Text>
       </Card.Body>
     </Card>
@@ -17,10 +36,9 @@ MovieCard.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
-    ImagePath: PropTypes.string,
+    ImageURL: PropTypes.string.isRequired,
     Genre: PropTypes.shape({
       Name: PropTypes.string,
     }),
   }),
-  onMovieClick: PropTypes.func.isRequired,
 };
