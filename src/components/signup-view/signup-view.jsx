@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
-const apiUrl = 'https://users-movies-f50a18657028.herokuapp.com';
+const apiUrl = 'https://spencer-flix-c2b5a70a1e0d.herokuapp.com';
 
 export const SignupView = () => {
   const [username, setUsername] = useState('');
