@@ -1,4 +1,6 @@
-This is the client side to an API, a resource to movie information.  To view/add to the project, use the following command:
+This is the client side to an API, a resource to movie information.  Users can create a personal profile for this app.  In their profile, they can view a list of movies and choose/mark any as a 'favorite'.  
+
+To view/add to the project, use the following command:
 
 BASH:
 parcel src/index.html
