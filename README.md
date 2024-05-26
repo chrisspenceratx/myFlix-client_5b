@@ -22,10 +22,13 @@ Welcome to MovieApiClient, a React-based portfolio project representing my knowl
 
 ## Getting Started
 
-1. Clone the repository: `git clone https://github.com/Sean-Andrew-Stanek/movie_api_client.git`
+1. Clone the repository: `git clone https://github.com/chrisspenceratx/myFlix-client_5b.git`
 2. Install dependencies: `npm install`
 3. Start the development server: `npm start`
 4. Open http://localhost:1234/ to view the application.
+
+## LIVE SITE:
+- Open https://spencer-flix.netlify.app/ 
 
 ## Scripts
 
