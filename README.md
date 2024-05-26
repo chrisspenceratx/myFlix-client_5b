@@ -1,12 +1,53 @@
-This is the client side to an API, a resource to movie information.  Users can create a personal profile for this app.  In their profile, they can view a list of movies and choose/mark any as a 'favorite'.  
+# MovieApiClient React Portfolio Project
 
-To view/add to the project, use the following command:
+Welcome to MovieApiClient, a React-based portfolio project representing my knowledge in building dynamic web applications. This client-side application interacts with a movie server API, providing an intuitive and responsive user interface.
 
-BASH:
-parcel src/index.html
+## Overview
 
-(Note: While developing this app, I ran into specific github branch conflicts/errors.  I tried to start fresh at different points, by making new repos/versions to compensate.  Now that it is fully functional, I created this final repo, 'myFlix-client_5b'.  This is why there are fewer commits for this particular repo.)
+- **React Version**: 18.2.0
+- **Build Tool**: Parcel
 
+## Project Highlights
 
-LIVE SITE:
-https://spencer-flix.netlify.app/
+- **Bootstrap Integration**: Utilizes Bootstrap for a consistent and visually appealing design.
+- **React-Bootstrap Components**: Enhances UI components with React-Bootstrap integration.
+- **React Router**: Implements React Router for efficient navigation and URL management.
+
+## Technologies Used
+
+- **React**: A JavaScript library for building user interfaces.
+- **Bootstrap**: A popular CSS framework for responsive and mobile-first web development.
+- **React-Bootstrap**: React components compatible with Bootstrap.
+- **React Router**: A declarative routing library for React.
+
+## Getting Started
+
+1. Clone the repository: `git clone https://github.com/Sean-Andrew-Stanek/movie_api_client.git`
+2. Install dependencies: `npm install`
+3. Start the development server: `npm start`
+4. Open http://localhost:1234/ to view the application.
+
+## Scripts
+
+- `npm start`: Start the development server using Parcel.
+- `npm run build`: Build the project for production.
+- `parcel src/index.html`: View/add to the project with this command also.
+
+## Dependencies
+
+- **bootstrap**
+- **prop-types**
+- **react**
+- **react-bootstrap**
+- **react-dom**
+- **react-icons**
+- **react-player**
+- **react-router**
+- **react-router-dom**
+- **react-scripts**
+
+## DevDependencies
+
+- **@parcel/transformer-sass**
+- **parcel**
+- **process**
